@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> ba2dd86cd3206bf263bf8a3f4d61ee803efaca9d
 # store_app
 
 A new Flutter project.
