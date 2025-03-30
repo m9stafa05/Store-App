@@ -18,8 +18,8 @@ class ProductModel {
   factory ProductModel.fromJson(jsonData) {
     return ProductModel(
       id: jsonData['id'],
-      title: jsonData['title'],
-      price: jsonData['price'],
+      title: jsonData['title'] ,
+      price: (jsonData['price'] as num).toDouble(),
       description: jsonData['description'],
       image: jsonData['image'],
       rating: RatingModel.fromJson(jsonData['rating']),
@@ -35,7 +35,7 @@ class RatingModel {
   factory RatingModel.fromJson(jsonData) {
     return RatingModel(
       count: jsonData['count'],
-      rate: jsonData['rate'],
+      rate: (jsonData['rate'] as num).toDouble(),
     );
   }
 }
