@@ -10,6 +10,7 @@ class AddProductService {
     required String image,
     required String category,
   }) async {
+    // ignore: missing_required_param
     Map<String, dynamic> jsonData = await Api().post(
       url: baseUrl,
       data: {
