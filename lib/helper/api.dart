@@ -53,12 +53,16 @@ class Api {
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
-    Response response = await Dio().post(
+    debugPrint(
+      'url: $url \n data: $data \n headers: $headers \n token: $token',
+    );
+    Response response = await Dio().put(
       url,
       data: data,
       options: Options(headers: headers),
     );
     if (response.statusCode == 200) {
+      debugPrint('\n response: ${response.data}');
       return response.data;
     } else {
       throw Exception(
