@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/pages/home_page.dart';
+import 'package:store_app/pages/updata_product_page.dart';
 
 // flutter build web --release && firebase init hosting && firebase deploy --only hosting -m 'V 1.0.0'
 // firebase deploy --only hosting -m ' V 1.0.1'
@@ -16,6 +17,7 @@ class StoreApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         HomePage.id: (context) =>  HomePage(),
+        UpdataProductPage.id: (context) =>  UpdataProductPage(),
       },
       initialRoute: HomePage.id,
       
