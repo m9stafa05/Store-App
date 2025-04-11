@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomButton extends StatelessWidget {
-  CustomButton({super.key, this.onTap, required this.text});
+  CustomButton({
+    super.key,
+    this.onTap,
+    required this.text,
+    this.color = Colors.green,
+  });
   final String text;
+  final Color color;
   VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
@@ -13,7 +19,7 @@ class CustomButton extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.green,
+            color: color,
             borderRadius: BorderRadius.circular(15),
           ),
           width: double.infinity,
