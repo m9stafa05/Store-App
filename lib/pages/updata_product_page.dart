@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/services/update_product_service.dart';
-import 'package:store_app/widgets/custam_form_textfield.dart';
+import 'package:store_app/widgets/custom_textfield.dart';
 import 'package:store_app/widgets/custom_button.dart';
 import 'package:store_app/widgets/show_snack_bar.dart';
 
 // ignore: must_be_immutable
 class UpdataProductPage extends StatefulWidget {
-  const UpdataProductPage({super.key});
+  UpdataProductPage({super.key});
   static String id = 'UpdataProductPage';
+  void pickImage() async {}
+  Color? color;
 
   @override
   State<UpdataProductPage> createState() => _UpdataProductPageState();
@@ -17,8 +20,17 @@ class UpdataProductPage extends StatefulWidget {
 
 class _UpdataProductPageState extends State<UpdataProductPage> {
   String? productName, description, image, price;
-
   bool isLoading = false;
+  final ImagePicker _picker = ImagePicker();
+
+  pickImage() async {
+    final pickedImage = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedImage != null) {
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +60,7 @@ class _UpdataProductPageState extends State<UpdataProductPage> {
             child: Column(
               children: [
                 SizedBox(height: 64),
-                CustamTextField(
+                CustomTextField(
                   onChange: (data) {
                     productName = data;
                   },
@@ -56,7 +68,7 @@ class _UpdataProductPageState extends State<UpdataProductPage> {
                   hintText: 'Product Name',
                 ),
                 SizedBox(height: 15),
-                CustamTextField(
+                CustomTextField(
                   onChange: (data) {
                     description = data;
                   },
@@ -64,7 +76,7 @@ class _UpdataProductPageState extends State<UpdataProductPage> {
                   hintText: 'description',
                 ),
                 SizedBox(height: 15),
-                CustamTextField(
+                CustomTextField(
                   onChange: (data) {
                     price = data;
                   },
@@ -72,13 +84,33 @@ class _UpdataProductPageState extends State<UpdataProductPage> {
                   hintText: 'Price',
                   textInputType: TextInputType.number,
                 ),
-                SizedBox(height: 15),
-                CustamTextField(
-                  onChange: (data) {
-                    image = data;
+                SizedBox(height: 30),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(
+                      255,
+                      8,
+                      85,
+                      148,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      "Update Image",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  onPressed: () async {
+                    await pickImage();
                   },
-                  labelText: 'image',
-                  hintText: 'image',
                 ),
                 SizedBox(height: 30),
                 CustomButton(
@@ -101,7 +133,6 @@ class _UpdataProductPageState extends State<UpdataProductPage> {
                         context,
                         message: 'Something went wrong',
                       );
-
                       debugPrint('error ${e.toString()}');
                     }
                     isLoading = false;
